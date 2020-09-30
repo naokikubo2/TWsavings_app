@@ -39,7 +39,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+
+    def update_resource(resource, params)
+      if params[:password].present?
+        resource.update_attributes(params)
+      else
+        resource.update_without_password(params)
+      end
+    end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -52,9 +60,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
-    "/user/#{current_user.id}"
-  end
+  #def after_sign_up_path_for(resource)
+  #  "/user/#{current_user.id}"
+  #end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
