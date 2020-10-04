@@ -1,13 +1,19 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
-
-<% if user_signed_in? %>
-  <a>username: </a>
-  <%= current_user.name %>
-  <%= link_to "ログアウトする", logout_path %>
-  <%= link_to "登録情報を変更する", edit_user_registration_path %>
-  <%= link_to "ユーザ削除", user_registration_path, method: :delete, data: { confirm: "You sure?" } %>
-<% else %>
-  <%= link_to "新規登録する", signup_path %>
-  <%= link_to "ログインする", login_path %>
-<% end %>
+<section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">在宅貯金</h1>
+      <p class="lead text-muted">時給1000円の人が、1日往復2時間節約すると1年で50万円分の利益があることご存知ですか？</p>
+      <p class="lead text-muted">在宅ワークの価値を知って、もっと豊かな世の中を。</p>
+      <p>
+        <% if user_signed_in? %>
+          <a>ユーザー名: </a>
+          <%= current_user.name %>
+          <p><%= link_to "ログアウトする", logout_path, class: 'btn btn-outline-success fas fa-sign-out-alt w-50' %></p>
+          <p><%= link_to "ユーザー情報を変更する", edit_user_registration_path, class: 'btn btn-outline-warning fas fa-user-edit w-25' %>
+          <%= link_to "退会する", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか?" }, class: 'btn btn-outline-danger fas fa-user-slash w-25' %></p>
+        <% else %>
+          <%= link_to "新規登録する", signup_path, class: 'btn btn-outline-primary fas fa-user-plus w-25' %>
+          <%= link_to "ログインする", login_path, class: 'btn btn-outline-success fas fa-sign-in-alt w-25' %>
+        <% end %>
+      </p>
+    </div>
+</section>
