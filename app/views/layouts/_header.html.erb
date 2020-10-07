@@ -1,0 +1,45 @@
+<header>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <%= link_to("在宅貯金 app", root_path, class: "navbar-brand fas fa-piggy-bank") %>
+      <button class="navbar-toggler navbar-toggler" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        <ul class="navbar navbar-nav">
+          <li class="nav-item list-unstyled">
+            <%= link_to("Home", root_path, class: "nav-link") %>
+          </li>
+          <% if user_signed_in? %>
+            <li class="nav-item list-unstyled">
+                <%= link_to("在貯金する", '#', class: "nav-link") %>
+            </li>
+            <li class="nav-item list-unstyled">
+                <%= link_to("貯金額を見る", '#', class: "nav-link") %>
+            </li>
+            <li class="nav-item list-unstyled">
+                <%= link_to("在宅で不要になった行動を登録", '#', class: "nav-link") %>
+            </li>
+            <li class="nav-item list-unstyled">
+                <%= link_to("ユーザー情報を編集", edit_user_registration_path, class: "nav-link") %>
+            </li>
+            <li class="nav-item list-unstyled">
+                <%= link_to("ログアウト", logout_path,
+                data: {confirm: "本当にログアウトしますか？"}, class: "nav-link") %>
+            </li>
+          <% else %>
+            <li class="nav-item list-unstyled">
+                <%= link_to("在宅貯金appの特徴と便利な使い方", '#', class: "nav-link") %>
+            </li>
+            <li class="nav-item list-unstyled">
+                <%= link_to("会員登録", signup_path, class: "nav-link") %>
+            </li>
+            <li class="nav-item list-unstyled">
+                <%= link_to("ログイン", login_path, class: "nav-link") %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
