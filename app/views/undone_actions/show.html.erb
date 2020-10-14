@@ -1,0 +1,28 @@
+<% if user_signed_in? %>
+      <div class = "album py-5 bg-light">
+        <div class = "container">
+          <div class = "row">
+            <% current_user.undone_actions.each do |undone_action| %>
+              <div class = "col">
+                <div class = "card mb-4 shadow-sm">
+                  <%= link_to edit_undone_action_path(undone_action), class: 'btn btn-default' do %>
+                    <div class = "card-body">
+                      <p class = "card-text">
+                        <p><%= undone_action.action_name %></p>
+                        <p>
+                        <% if (undone_action.default_time).div(60)>0  %>
+                          <%= (undone_action.default_time).div(60) %>時間
+                        <% end %>
+                        <% if undone_action.default_time.modulo(60) != 0 %>
+                          <%= undone_action.default_time.modulo(60) %>分</p>
+                        <% end %>
+                      </p>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>

@@ -1,0 +1,19 @@
+<h2>不要になった行動  変更</h2>
+
+<p>ログインしたユーザが、通勤、朝の準備、付き合いで行く飲み会など、"在宅ワークによって行われなくなった行動"と、"デフォルトでかかる時間"を登録できる。</p>
+<%= form_with(model: @undone, local: true) do |f| %>
+    <div class="form-group">
+        <%= f.label :action_name, "不要行動の名前" %><br />
+        <%= f.text_field :action_name, autofocus: true, class: 'w-50' %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :default_time, "平均時間" %><br />
+        <%= f.number_field :default_time, autofocus: true, class: 'w-50' %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit "登録する" %>
+    </div>
+<% end %>
+<%= link_to "不要行動を削除する", undone_action_path, method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-outline-danger fas fa-user-slash w-25' %></p>
