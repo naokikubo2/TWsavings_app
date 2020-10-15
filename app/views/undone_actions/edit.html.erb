@@ -2,6 +2,7 @@
 
 <p>ログインしたユーザが、通勤、朝の準備、付き合いで行く飲み会など、"在宅ワークによって行われなくなった行動"と、"デフォルトでかかる時間"を登録できる。</p>
 <%= form_with(model: @undone, local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
     <div class="form-group">
         <%= f.label :action_name, "不要行動の名前" %><br />
         <%= f.text_field :action_name, autofocus: true, class: 'w-50' %>

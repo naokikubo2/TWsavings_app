@@ -11,5 +11,5 @@ Rails.application.routes.draw do
     get "logout", :to => "users/sessions#destroy"
   end
 
-  resources :undone_actions
+  resources :undone_actions, only: [:new, :create, :destroy, :edit, :update]
 end

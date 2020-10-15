@@ -1,6 +1,6 @@
 class UndoneActionsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_undone_action, only: [:show, :edit, :update, :destroy]
+    before_action :set_undone_action, only: [:edit, :update, :destroy]
     before_action :check_role, only: [:edit, :update, :destroy]
 
     def new
@@ -9,9 +9,10 @@ class UndoneActionsController < ApplicationController
     def create
         @undone = current_user.undone_actions.build(undone_actions_params)
         if @undone.save
-            flash[:notice] = "UndoneAction was successfully created"
+            flash[:notice] = "UndoneAction was successfully created."
             redirect_to root_url
         else
+            flash[:error] = "Failed"
             render 'new'
         end
     end
@@ -20,11 +21,13 @@ class UndoneActionsController < ApplicationController
     end
     def update
         @undone = current_user.undone_actions.find_by(id: params[:id])
-        @undone.update(undone_actions_params)
-        if @undone.save
+
+        if @undone.update(undone_actions_params)
+            flash[:notice] = "UndoneAction was successfully updated."
             redirect_to root_url
         else
-            render 'show'
+            flash[:error] = "Failed"
+            render 'edit'
         end
     end
     def destroy
@@ -32,7 +35,7 @@ class UndoneActionsController < ApplicationController
         @undone.destroy
         flash[:notice] = "UndoneAction was successfully destroyed"
         redirect_to root_url
-    end
+     end
 
 
 
