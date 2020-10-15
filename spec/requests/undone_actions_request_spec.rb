@@ -14,6 +14,24 @@ RSpec.describe "UndoneActions", type: :request do
     end
   end
 
+  #create
+  describe "POST /undone_actions/:id/create" do
+    context 'valid params' do
+      it "redirect to root page" do
+        post undone_actions_path, params: { undone_action: { user_id: current_user.id, action_name: "Created #{timestamp}", default_time: "1"} }
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'invalid params' do
+      it "render to new page" do
+        post undone_actions_path, params: { undone_action: { user_id: current_user.id, action_name: "", default_time: ""} }
+        expect(response.status).to eq(200)
+      end
+    end
+  end
+
+
   #edit
   describe "GET /undone_actions/:id/edit" do
     context 'other users undone_action page' do
@@ -32,8 +50,40 @@ RSpec.describe "UndoneActions", type: :request do
     end
   end
 
-  #delete
-  describe 'DELETE /blogs/:id' do
+  #update
+  describe "PUT /undone_actions/:id" do
+    let(:undone_action) { create(:undone_action, user: current_user) }
+    context 'valid params' do
+      it "redirect to root page" do
+        put undone_action_path(undone_action), params: { undone_action: { user_id: current_user.id, action_name: "Updated #{timestamp}"} }
+        expect(response).to redirect_to(root_path)
+        follow_redirect!
+        expect(response.body).to include("UndoneAction was successfully updated.")
+        expect(response.body).to include("Updated #{timestamp}")
+      end
+    end
+
+    context 'invalid params' do
+      it "render to edit page" do
+        put undone_action_path(undone_action), params: { undone_action: { user_id: current_user.id, action_name: "", default_time: ""} }
+        expect(response.status).to eq(200)
+        expect(response.body).to include("Action name can't be blank")
+        expect(response.body).to include("Default time can't be blank")
+      end
+    end
+
+    context 'try to update other users other_undone_action' do
+      it "redirect to root page" do
+        other_undone_action = create(:undone_action_other)
+        put undone_action_path(other_undone_action), params: { other_undone_action: { user_id: current_user.id, action_name: "actionname"} }
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
+
+  #destroy
+  describe 'DELETE /undone_actions/:id' do
     let(:undone_action) { create(:undone_action, user: current_user) }
     context 'delete own undone_action' do
       it "redirect to root page" do
