@@ -9,40 +9,36 @@ class UndoneActionsController < ApplicationController
     def create
         @undone = current_user.undone_actions.build(undone_actions_params)
         if @undone.save
-            flash[:notice] = "UndoneAction was successfully created."
+            flash[:notice] = "不要行動の登録に成功しました"
             redirect_to root_url
         else
-            flash[:error] = "Failed"
+            flash[:error] = "不要行動の登録に失敗しました"
             render 'new'
         end
     end
     def edit
-        @undone = current_user.undone_actions.find_by(id: params[:id])
     end
     def update
-        @undone = current_user.undone_actions.find_by(id: params[:id])
-
         if @undone.update(undone_actions_params)
-            flash[:notice] = "UndoneAction was successfully updated."
+            flash[:notice] = "不要行動の更新に成功しました"
             redirect_to root_url
         else
-            flash[:error] = "Failed"
+            flash[:error] = "不要行動の更新に失敗しました"
             render 'edit'
         end
     end
     def destroy
-        @undone = current_user.undone_actions.find_by(id: params[:id])
         @undone.destroy
-        flash[:notice] = "UndoneAction was successfully destroyed"
+        flash[:notice] = "不要行動の削除に成功しました"
         redirect_to root_url
-     end
+    end
 
 
 
     private
 
     def set_undone_action
-        @undone = UndoneAction.find_by(id: params[:id])
+        @undone = UndoneAction.find(params[:id])
     end
 
     def check_role

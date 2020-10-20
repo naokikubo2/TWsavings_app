@@ -39,14 +39,14 @@ RSpec.describe UndoneAction, type: :model do
     u_action = @u_action
     u_action.action_name = ""
     u_action.valid?
-    expect(u_action.errors.messages[:action_name]).to include("can't be blank")
+    expect(u_action.errors.messages[:action_name]).to include("を入力してください")
   end
 
   it 'is invalid without a default_time' do
     u_action = @u_action
     u_action.default_time = ""
     u_action.valid?
-    expect(u_action.errors.messages[:default_time]).to include("can't be blank")
+    expect(u_action.errors.messages[:default_time]).to include("を入力してください")
   end
 
   #境界値分析
@@ -60,7 +60,7 @@ RSpec.describe UndoneAction, type: :model do
     u_action = @u_action
     u_action.action_name = "a" * 26
     u_action.valid?
-    expect(u_action.errors.messages[:action_name]).to include("is too long (maximum is 25 characters)")
+    expect(u_action.errors.messages[:action_name]).to include("は25文字以内で入力してください")
   end
 
   it 'is valid with 4文字のdefault_time' do
@@ -73,7 +73,7 @@ RSpec.describe UndoneAction, type: :model do
     u_action = @u_action
     u_action.default_time = "12345"
     u_action.valid?
-    expect(u_action.errors.messages[:default_time]).to include("is too long (maximum is 4 characters)")
+    expect(u_action.errors.messages[:default_time]).to include("は4文字以内で入力してください")
   end
 
   #一意性
@@ -81,7 +81,7 @@ RSpec.describe UndoneAction, type: :model do
     u_action = @u_action
     u_action_other = @u_action_other
     u_action_other.valid?
-    expect(u_action_other.errors.messages[:action_name]).to include("has already been taken")
+    expect(u_action_other.errors.messages[:action_name]).to include("はすでに存在します")
   end
 
 end

@@ -58,7 +58,7 @@ RSpec.describe "UndoneActions", type: :request do
         put undone_action_path(undone_action), params: { undone_action: { user_id: current_user.id, action_name: "Updated #{timestamp}"} }
         expect(response).to redirect_to(root_path)
         follow_redirect!
-        expect(response.body).to include("UndoneAction was successfully updated.")
+        expect(response.body).to include("不要行動の更新に成功しました")
         expect(response.body).to include("Updated #{timestamp}")
       end
     end
@@ -67,8 +67,8 @@ RSpec.describe "UndoneActions", type: :request do
       it "render to edit page" do
         put undone_action_path(undone_action), params: { undone_action: { user_id: current_user.id, action_name: "", default_time: ""} }
         expect(response.status).to eq(200)
-        expect(response.body).to include("Action name can't be blank")
-        expect(response.body).to include("Default time can't be blank")
+        expect(response.body).to include("不要行動の名前を入力してください")
+        expect(response.body).to include("所要時間を入力してください")
       end
     end
 
@@ -90,7 +90,7 @@ RSpec.describe "UndoneActions", type: :request do
         delete undone_action_path(undone_action)
         expect(response).to redirect_to(root_path)
         follow_redirect!
-        expect(response.body).to include("was successfully destroyed")
+        expect(response.body).to include("不要行動の削除に成功しました")
       end
     end
 
@@ -100,7 +100,7 @@ RSpec.describe "UndoneActions", type: :request do
         delete undone_action_path(other_undone_action)
         expect(response).to redirect_to(root_path)
         follow_redirect!
-        expect(response.body).not_to include("was successfully destroyed")
+        expect(response.body).not_to include("不要行動の削除に成功しました")
       end
     end
   end
