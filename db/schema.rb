@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_035123) do
+ActiveRecord::Schema.define(version: 2020_10_07_140946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "savings_records", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "earned_time"
+    t.date "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "undone_actions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "action_name"
+    t.integer "default_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_undone_actions_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,4 +45,5 @@ ActiveRecord::Schema.define(version: 2020_09_28_035123) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "undone_actions", "users"
 end

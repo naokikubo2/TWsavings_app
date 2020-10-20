@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      undone_action: 不要行動
+    attributes:
+      undone_action:
+        action_name: 不要行動の名前
+        default_time: 所要時間

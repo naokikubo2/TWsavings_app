@@ -4,4 +4,6 @@ class User < ApplicationRecord
   attr_accessor :current_password
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :undone_actions, dependent: :destroy
 end
