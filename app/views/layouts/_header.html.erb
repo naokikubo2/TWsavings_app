@@ -12,10 +12,10 @@
           </li>
           <% if user_signed_in? %>
             <li class="nav-item list-unstyled">
-                <%= link_to("在貯金する", '#', class: "nav-link") %>
+                <%= link_to("在宅貯金する", new_savings_record_path, class: "nav-link") %>
             </li>
             <li class="nav-item list-unstyled">
-                <%= link_to("貯金額を見る", '#', class: "nav-link") %>
+                <%= link_to("貯金額を見る", savings_records_path, class: "nav-link") %>
             </li>
             <li class="nav-item list-unstyled">
                 <%= link_to("在宅で不要になった行動を登録", new_undone_action_path, class: "nav-link") %>

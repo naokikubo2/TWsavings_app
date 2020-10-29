@@ -1,0 +1,18 @@
+<h2>在宅貯金をする</h2>
+
+<h3><%=  Date.today %></h3>
+
+<%= form_with(model: @savings_record, local: true) do |f| %>
+  <div class="form-group">
+      <%= f.label :savings_name, "不要行動" %><br />
+      <%= f.text_field :savings_name, autofocus: true, class: 'w-50' %>
+  </div>
+  <div class="form-group">
+      <%= f.label :earned_time, "所要時間(分)" %><br />
+      <%= f.number_field :earned_time, autofocus: true, class: 'w-50' %>
+  </div>
+  <div class="actions">
+      <%= f.submit "貯金する" %>
+  </div>
+<% end %>
+
