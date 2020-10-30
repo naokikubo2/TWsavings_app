@@ -7,12 +7,27 @@
         <% if user_signed_in? %>
           <a>ユーザー名: </a>
           <%= current_user.name %>
-          <p><%= link_to "ログアウトする", logout_path, class: 'btn btn-outline-success fas fa-sign-out-alt w-50' %></p>
-          <p><%= link_to "ユーザー情報を変更する", edit_user_registration_path, class: 'btn btn-outline-warning fas fa-user-edit w-25' %>
-          <%= link_to "退会する", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか?" }, class: 'btn btn-outline-danger fas fa-user-slash w-25' %></p>
+          <p>
+            <%= link_to logout_path, class: 'btn btn-outline-success w-50' do %>
+              <i class="fas fa-sign-out-alt"></i>ログアウトする
+            <% end %>
+          </p>
+          <p>
+            <%= link_to edit_user_registration_path, class: 'btn btn-outline-warning w-25' do %>
+              <i class="fas fa-user-edit"></i>ユーザー情報を変更する
+            <% end %>
+            <%= link_to user_registration_path, method: :delete, data: { confirm: "本当に退会しますか?" },
+            class: 'btn btn-outline-danger w-25' do %>
+              <i class="fas fa-user-slash "></i>退会する
+            <% end %>
+          </p>
         <% else %>
-          <%= link_to "新規登録する", signup_path, class: 'btn btn-outline-primary fas fa-user-plus w-25' %>
-          <%= link_to "ログインする", login_path, class: 'btn btn-outline-success fas fa-sign-in-alt w-25' %>
+          <%= link_to signup_path, class: 'btn btn-outline-primary w-25' do %>
+            <i class="fas fa-user-plus"></i>新規登録する
+          <% end %>
+          <%= link_to login_path, class: 'btn btn-outline-success w-25' do %>
+            <i class="fas fa-sign-in-alt"></i>ログインする
+          <% end %>
         <% end %>
       </p>
       <% if user_signed_in? %>
