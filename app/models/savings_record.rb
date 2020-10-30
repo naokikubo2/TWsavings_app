@@ -6,6 +6,8 @@ class SavingsRecord < ApplicationRecord
   validate :date_not_after_today
 
   def date_not_after_today
-    errors.add(:savings_date, 'は今日以前のものを選択してください') if savings_date > Date.today unless savings_date.nil?
+    unless savings_date.nil?
+      errors.add(:savings_date, 'は今日以前のものを選択してください') if savings_date > Date.today
+    end
   end
 end
