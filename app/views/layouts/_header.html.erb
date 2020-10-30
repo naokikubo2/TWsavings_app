@@ -1,7 +1,9 @@
 <header>
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <%= link_to("在宅貯金 app", root_path, class: "navbar-brand fas fa-piggy-bank") %>
+      <%= link_to(root_path, class: "navbar-brand") do %>
+        在宅貯金 app <i class = "fas fa-piggy-bank"></i>
+      <% end %>
       <button class="navbar-toggler navbar-toggler" data-toggle="collapse" data-target="#navbarNavAltMarkup">
         <span class="navbar-toggler-icon"></span>
       </button>
