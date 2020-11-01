@@ -1,18 +1,44 @@
-<h2>在宅貯金をする</h2>
 
-<h3><%=  Date.today %></h3>
-
+  <div class="panel panel-default">
+    <div class="panel-heading bg-secondary text-white"><h2 class="panel-title">在宅貯金する</h2><h3><%=  Date.today %></h3></div>
+    <div class="panel-body bg-light">
 <%= form_with(model: @savings_record, local: true) do |f| %>
-  <div class="form-group">
-      <%= f.label :savings_name, "不要行動" %><br />
-      <%= f.text_field :savings_name, autofocus: true, class: 'w-50' %>
+
+  <div class="form-group col-md-6 offset-md-3">
+    <label>My 不要行動</label><br />
+    <select multiple name="s_test" id="target" class="form-control text-center" onChange='auto_input()'>
+    <option disabled selected value>Choose...</option>
+    <% current_user.undone_actions.each do |undone_action| %>
+      <option value= <%= undone_action.action_name %>&<%= undone_action.default_time %>><%= undone_action.action_name %></option>
+    <% end %>
+    </select>
   </div>
+
+  <div class="form-group">
+    <%= f.label :savings_name, "不要行動" %><br />
+    <%= f.text_field :savings_name, autofocus: true, class: 'w-50 text-center', name: "savings_record[savings_name]" %>
+  </div>
+
   <div class="form-group">
       <%= f.label :earned_time, "所要時間(分)" %><br />
-      <%= f.number_field :earned_time, autofocus: true, class: 'w-50' %>
-  </div>
+      <%= f.number_field :earned_time, autofocus: true, class: 'w-50 text-center' %>
+  </div><br>
+
   <div class="actions">
-      <%= f.submit "貯金する" %>
-  </div>
+      <%= f.submit "貯金する", class: "btn btn-outline-primary w-25" %>
+  </div><br>
+
 <% end %>
+</div></div>
+</div>
+
+<script>
+var auto_input = function () {
+  var element = document.getElementById("target");
+  document.getElementById("savings_record_savings_name").value = element.value.split("&")[0];
+  document.getElementById("savings_record_earned_time").value = element.value.split("&")[1];;
+}
+</script>
+
+
 
