@@ -6,7 +6,7 @@
 
   <div class="form-group col-md-6 offset-md-3">
     <label>My 不要行動</label><br />
-    <select multiple name="s_test" id="target" class="form-control text-center" onChange='auto_input()'>
+    <select multiple id="my_undone_action" class="form-control text-center" onChange='auto_input()'>
     <option disabled selected value>Choose...</option>
     <% current_user.undone_actions.each do |undone_action| %>
       <option value= <%= undone_action.action_name %>&<%= undone_action.default_time %>><%= undone_action.action_name %></option>
@@ -16,7 +16,7 @@
 
   <div class="form-group">
     <%= f.label :savings_name, "不要行動" %><br />
-    <%= f.text_field :savings_name, autofocus: true, class: 'w-50 text-center', name: "savings_record[savings_name]" %>
+    <%= f.text_field :savings_name, autofocus: true, class: 'w-50 text-center' %>
   </div>
 
   <div class="form-group">
@@ -34,7 +34,7 @@
 
 <script>
 var auto_input = function () {
-  var element = document.getElementById("target");
+  var element = document.getElementById("my_undone_action");
   document.getElementById("savings_record_savings_name").value = element.value.split("&")[0];
   document.getElementById("savings_record_earned_time").value = element.value.split("&")[1];;
 }
