@@ -20,6 +20,3 @@ require("@fortawesome/fontawesome-free/js/all")
 // const imagePath = (name) => images(name, true)
 
 import "../stylesheets/application.scss"
-
-// import JavaScript files
-import "./auto_input"
