@@ -6,7 +6,7 @@
 
   <div class="form-group col-md-6 offset-md-3">
     <label>My 不要行動</label><br />
-    <select multiple id="my_undone_action" class="form-control text-center" onChange='auto_input()'>
+    <select multiple id="my_undone_action" class="form-control text-center">
     <option disabled selected value>Choose...</option>
     <% current_user.undone_actions.each do |undone_action| %>
       <option value= <%= undone_action.action_name %>&<%= undone_action.default_time %>><%= undone_action.action_name %></option>
@@ -29,16 +29,11 @@
   </div><br>
 
 <% end %>
-</div></div>
+</div>
+</div>
 </div>
 
-<script>
-var auto_input = function () {
-  var element = document.getElementById("my_undone_action");
-  document.getElementById("savings_record_savings_name").value = element.value.split("&")[0];
-  document.getElementById("savings_record_earned_time").value = element.value.split("&")[1];;
-}
-</script>
-
+<button id="test">テスト</button>
+<input id = "test_input">
 
 
