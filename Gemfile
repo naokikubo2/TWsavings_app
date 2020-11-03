@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'devise'
 
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+
 gem 'sprockets', '~> 3.7.2'
 
 # Reduces boot times through caching; required in config/boot.rb
