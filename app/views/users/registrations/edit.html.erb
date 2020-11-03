@@ -13,6 +13,11 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-25' %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :hourly_pay, "時給" %><br />
+    <%= f.number_field :hourly_pay, autofocus: true, autocomplete: "hourly_pay", class: 'w-25' %>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
