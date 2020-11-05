@@ -21,6 +21,7 @@ class SavingsRecordsController < ApplicationController
 
   def index
     @savings_records = SavingsRecord.where(user_id: current_user.id).order(created_at: :desc)
+    @savings_records_all = SavingsRecord.order(created_at: :desc)
   end
 
   def destroy

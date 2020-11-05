@@ -14,4 +14,8 @@ module SavingsRecordsHelper
   def calc_minuite(savings_record)
     savings_record.earned_time.modulo(60)
   end
+  def format_date(date)
+    dw = ["日", "月", "火", "水", "木", "金", "土"]
+    date.strftime("%Y/%m/%d(#{dw[date.wday]}) %H:%M")
+  end
 end
