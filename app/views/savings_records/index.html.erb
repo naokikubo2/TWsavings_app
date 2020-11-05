@@ -49,10 +49,6 @@
             <%= calc_pay(savings_record) %>円 貯金しました</h4>
             <div class="card-text float-right">
               <%= format_date(savings_record.created_at) %>
-              <%= link_to savings_record_path(savings_record), method: :delete, data: { confirm: "本当に削除しますか?" },
-                  class: 'btn text-warning' do %>
-                  <i class="far fa-trash-alt"></i>
-              <% end %>
             </div>
           </div>
         </div>
