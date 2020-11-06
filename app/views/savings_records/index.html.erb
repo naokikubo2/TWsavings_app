@@ -48,7 +48,7 @@
             <h4 class="card-title"><%= savings_record.savings_name %>で
             <%= calc_pay(savings_record) %>円 貯金しました</h4>
             <div class="card-text float-right">
-              <%= format_date(savings_record.created_at) %>
+              <%= I18n.l(savings_record.created_at) %>
             </div>
           </div>
         </div>
