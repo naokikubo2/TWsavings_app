@@ -38,6 +38,7 @@
 <div class="jumbotron bg-white">
   <h2>みんなの在宅貯金</h2>
   <% @savings_records_all.each do |savings_record| %>
+    <%= link_to savings_record_path(savings_record), class: "text-decoration-none text-dark" do %>
     <div class="card mx-auto mb-3" style="max-width: 50rem;">
       <div class="row no-gutters">
         <div class="card-header col-md-2 d-flex align-items-center justify-content-center">
@@ -54,6 +55,7 @@
         </div>
       </div>
     </div>
+    <% end %>
   <% end %>
   <%= paginate @savings_records_all %>
 </div>
