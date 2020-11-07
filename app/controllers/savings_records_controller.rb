@@ -36,7 +36,7 @@ class SavingsRecordsController < ApplicationController
   private
 
   def set_savings_record
-    @savings_record = SavingsRecord.find(params[:id])
+    @savings_record = SavingsRecord.find_with_comments(params[:id])
   end
 
   def check_role

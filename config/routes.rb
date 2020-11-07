@@ -12,5 +12,8 @@ Rails.application.routes.draw do
   end
 
   resources :undone_actions, only: [:new, :create, :destroy, :edit, :update]
-  resources :savings_records, only: [:new, :create, :destroy, :index, :show]
+  resources :savings_records, only: [:new, :create, :destroy, :index, :show] do
+    resources :comments, only: %w[create destroy]
+  end
+
 end

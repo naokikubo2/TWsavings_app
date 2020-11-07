@@ -1,0 +1,16 @@
+<div id="comments" class="my-3">
+  <%= render partial: 'comments/index' %>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+      <%= form_for :comment, url: savings_record_comments_path(@savings_record), remote: true do |f| %>
+        <%= f.text_area :content, id: "comments_content", class: 'w-75' %>
+
+        <div class="float-right mx-5">
+          <%= f.submit "コメント", class: "btn-sm btn-primary float-right mx-5" %>
+        </div>
+      <% end %>
+    </div>
+</div>
+

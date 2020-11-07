@@ -1,0 +1,18 @@
+<div class="my-5">
+  <h4>コメント</h4>
+  <div class="border-bottom">
+    <% @savings_record.comments.each do |comment| %>
+      <div class="border-top mx-5 px-5">
+        <div class="small text-muted text-left"><%= comment.user.name %></div>
+        <div class="float-right">
+          <% if comment.user == current_user %>
+            <%= link_to "Delete", savings_record_comment_path(@savings_record, comment), method: :delete, remote: true, data: { confirm: "本当に削除しますか?" } %>
+          <% end %>
+        </div>
+        <div class="text-left">
+          <%= comment.content %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
