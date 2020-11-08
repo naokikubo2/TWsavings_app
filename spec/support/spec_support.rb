@@ -12,9 +12,18 @@ module SpecSupport
       @current_user
     end
 
-    def log_in(user = create(:user))
+    def log_in(user = create(:user), type: :request)
       @current_user = user
-      sign_in(user)
+
+      case type
+      when :request
+        sign_in(user)
+      when :system
+        visit new_user_session_path
+        find("#user_email").set(user.email)
+        find("#user_password").set(user.password)
+        first("input[value='ログイン']").click
+      end
     end
 
     def log_out
@@ -24,4 +33,11 @@ module SpecSupport
     def json_response
       @json_response ||= JSON.parse(response.body)
     end
+
+    # give me block return boolean
+  def wait_until(wait_time = Capybara.default_max_wait_time)
+    Timeout.timeout(wait_time) do
+      loop until yield
+    end
   end
+end
