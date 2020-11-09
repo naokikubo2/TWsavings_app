@@ -1,6 +1,6 @@
 <div class="my-5">
   <h4>コメント</h4>
-  <div class="border-bottom">
+  <div class="border-bottom" id="comments_body">
     <% @savings_record.comments.each do |comment| %>
       <div class="border-top mx-5 px-5">
         <div class="small text-muted text-left"><%= comment.user.name %></div>

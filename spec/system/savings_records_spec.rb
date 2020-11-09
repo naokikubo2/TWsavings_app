@@ -18,21 +18,18 @@ RSpec.describe "Savings_records", type: :system do
     context "when own comment" do
       it 'post and deletable' do
         first("#comments_content").set("Comment#{timestamp}")
-        wait_until(5){
-          first('input[value="コメント"]').click
-        }
 
-        wait_until(7) {
-          all("#comments div").last.present?
-        }
+        first('input[value="コメント"]').click
+
+        all("#comments div").last.present?
+
         expect(all("#comments div").last.text).to eq("Comment#{timestamp}")
 
         find('a', text: 'Delete').click
 
-        wait_until(5) {
-          # check deleted
-          all("#comments div").last.nil?
-        }
+        # check deleted
+        all("#comments_body div").last.nil?
+
       end
     end
 

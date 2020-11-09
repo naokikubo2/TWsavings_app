@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
   private
 
     def set_savings_record
-      @savings_record = SavingsRecord.find_with_comments(params[:savings_record_id])
+      @savings_record = SavingsRecord.find(params[:savings_record_id])
     end
 
     def comment_params

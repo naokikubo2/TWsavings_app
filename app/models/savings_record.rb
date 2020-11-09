@@ -6,10 +6,6 @@ class SavingsRecord < ApplicationRecord
   validates :savings_date, presence: true
   validate :date_not_after_today
 
-  scope :find_with_comments, -> (id) {
-    includes(comments: :user).find(id)
-  }
-
   def date_not_after_today
     unless savings_date.nil?
       errors.add(:savings_date, 'は今日以前のものを選択してください') if savings_date > Date.today
