@@ -6,7 +6,7 @@
         <div class="small text-muted text-left"><%= comment.user.name %></div>
         <div class="float-right">
           <% if comment.user == current_user %>
-            <%= link_to "Delete", savings_record_comment_path(@savings_record, comment), method: :delete, remote: true, data: { confirm: "本当に削除しますか?" } %>
+            <%= link_to "Delete", savings_record_comment_path(@savings_record, comment), method: :delete, remote: true %>
           <% end %>
         </div>
         <div class="text-left">
