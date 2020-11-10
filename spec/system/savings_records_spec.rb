@@ -21,14 +21,18 @@ RSpec.describe "Savings_records", type: :system do
 
         first('input[value="コメント"]').click
 
-        all("#comments div").last.present?
+        wait_until(5) {
+          all("#comments_body div").last.present?
+        }
 
         expect(all("#comments div").last.text).to eq("Comment#{timestamp}")
 
         find('a', text: 'Delete').click
 
+        wait_until(7) {
         # check deleted
-        all("#comments_body div").last.nil?
+          all("#comments_body div").last.nil?
+        }
 
       end
     end
