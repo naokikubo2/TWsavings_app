@@ -1,65 +1,17 @@
-<div class="jumbotron bg-primary text-white">
-  <h2>累計貯金額</h2>
-  <h1>
-    <%= savings_total %>円
-  </h1>
-  (本日の貯金+ <%= savings_today %> 円)
-</div>
-
-<div class="jumbotron bg-white">
-  <h2>貯金履歴</h2>
-  <% @savings_records.each do |savings_record| %>
-    <div class="card mx-auto border-primary mb-3" style="max-width: 20rem;">
-      <h3 class="card-header"><%= calc_pay(savings_record) %>円</h3>
-      <div class="card-body">
-        <div class="card-text">
-          <p>
-            <%= savings_record.savings_name %>
-            <% if calc_hour(savings_record)>0  %>
-              <%= calc_hour(savings_record) %>時間
-            <% end %>
-            <% if calc_minuite(savings_record) != 0 %>
-              <%= calc_minuite(savings_record) %>分</a>
-            <% end %>
-            <%= savings_record.savings_date %>
-          <%= link_to savings_record_path(savings_record), method: :delete, data: { confirm: "本当に削除しますか?" },
-                class: 'btn text-warning' do %>
-          <i class="far fa-trash-alt"></i>
-          <% end %>
-          </p>
-        </div>
-      </div>
-    </div>
-    <br>
-  <% end %>
-  <%= paginate @savings_records %>
-</div>
-
-<div class="jumbotron bg-white">
-  <h2>みんなの在宅貯金</h2>
-  <% @savings_records_all.each do |savings_record| %>
-
-    <div class="card mx-auto mb-3" style="max-width: 50rem;">
-      <div class="row no-gutters">
-        <div class="card-header col-md-2 d-flex align-items-center justify-content-center">
-        <%= link_to user_path(savings_record.user), class: "text-decoration-none text-dark" do %>
-          <%= savings_record.user.name %>
-        <% end %>
-        </div>
-        <div class="col-md-10">
-          <div class="card-body">
-          <%= link_to savings_record_path(savings_record), class: "text-decoration-none text-dark" do %>
-            <h4 class="card-title"><%= savings_record.savings_name %>で
-            <%= calc_pay(savings_record) %>円 貯金しました</h4>
-            <% end %>
-            <div class="card-text float-right">
-              <%= I18n.l(savings_record.created_at) %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-  <%= paginate @savings_records_all %>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">私の在宅貯金</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">みんなの在宅貯金</a>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+    <%= render partial: 'mine' %>
+  </div>
+  <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+    <%= render partial: 'others' %>
+  </div>
 </div>
 

@@ -1,0 +1,27 @@
+<div class="jumbotron bg-white">
+  <h2>みんなの在宅貯金</h2>
+  <% @savings_records_all.each do |savings_record| %>
+
+    <div class="card mx-auto mb-3" style="max-width: 50rem;">
+      <div class="row no-gutters">
+        <div class="card-header col-md-2 d-flex align-items-center justify-content-center">
+        <%= link_to user_path(savings_record.user), class: "text-decoration-none text-dark" do %>
+          <%= savings_record.user.name %>
+        <% end %>
+        </div>
+        <div class="col-md-10">
+          <div class="card-body">
+          <%= link_to savings_record_path(savings_record), class: "text-decoration-none text-dark" do %>
+            <h4 class="card-title"><%= savings_record.savings_name %>で
+            <%= calc_pay(savings_record) %>円 貯金しました</h4>
+            <% end %>
+            <div class="card-text float-right">
+              <%= I18n.l(savings_record.created_at) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate @savings_records_all %>
+</div>

@@ -1,0 +1,37 @@
+
+<div class="jumbotron bg-primary text-white">
+  <h2>累計貯金額</h2>
+  <h1>
+    <%= savings_total %>円
+  </h1>
+  (本日の貯金+ <%= savings_today %> 円)
+</div>
+
+<div class="jumbotron bg-white">
+  <h2>貯金履歴</h2>
+  <% @savings_records.each do |savings_record| %>
+    <div class="card mx-auto border-primary mb-3" style="max-width: 20rem;">
+      <h3 class="card-header"><%= calc_pay(savings_record) %>円</h3>
+      <div class="card-body">
+        <div class="card-text">
+          <p>
+            <%= savings_record.savings_name %>
+            <% if calc_hour(savings_record)>0  %>
+              <%= calc_hour(savings_record) %>時間
+            <% end %>
+            <% if calc_minuite(savings_record) != 0 %>
+              <%= calc_minuite(savings_record) %>分</a>
+            <% end %>
+            <%= savings_record.savings_date %>
+          <%= link_to savings_record_path(savings_record), method: :delete, data: { confirm: "本当に削除しますか?" },
+                class: 'btn text-warning' do %>
+          <i class="far fa-trash-alt"></i>
+          <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <br>
+  <% end %>
+  <%= paginate @savings_records %>
+</div>
