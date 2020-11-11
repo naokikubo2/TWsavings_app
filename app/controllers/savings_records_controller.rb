@@ -1,6 +1,6 @@
 class SavingsRecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_savings_record, only: [:destroy]
+  before_action :set_savings_record, only: [:destroy, :show]
   before_action :check_role, only: [:destroy]
 
   def new
@@ -22,6 +22,9 @@ class SavingsRecordsController < ApplicationController
   def index
     @savings_records = SavingsRecord.where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per(5)
     @savings_records_all = SavingsRecord.order(created_at: :desc).page(params[:page]).per(5)
+  end
+
+  def show
   end
 
   def destroy

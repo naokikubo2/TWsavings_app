@@ -9,4 +9,5 @@ class User < ApplicationRecord
 
   has_many :undone_actions, dependent: :destroy
   has_many :savings_records, dependent: :destroy
+  has_many :comments, dependent: :destroy
 end

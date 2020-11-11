@@ -1,5 +1,6 @@
 class SavingsRecord < ApplicationRecord
   belongs_to :user
+  has_many :comments, dependent: :destroy
   validates :savings_name, presence: true, length: { maximum: 25 }
   validates :earned_time, presence: true, length: { maximum: 4 }
   validates :savings_date, presence: true
