@@ -16,4 +16,8 @@ Rails.application.routes.draw do
     resources :comments, only: %w[create destroy]
   end
 
+  resources :users, only: %w[index show] do
+    post :follow
+  end
+
 end
