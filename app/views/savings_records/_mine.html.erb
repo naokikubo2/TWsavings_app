@@ -16,7 +16,7 @@
         <div class="card-text">
           <p>
             <%= savings_record.savings_name %>
-            <% if calc_hour(savings_record)>0  %>
+            <% if calc_hour(savings_record) > 0  %>
               <%= calc_hour(savings_record) %>時間
             <% end %>
             <% if calc_minuite(savings_record) != 0 %>
