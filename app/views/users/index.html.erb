@@ -1,0 +1,14 @@
+<div class="jumbotron bg-white">
+  <h1>ユーザ一覧</h1>
+
+  <%= paginate @users %>
+  <div class="border-bottom">
+    <% @users.each do |user| %>
+    <div class="border-top mx-5 px-5">
+      <div class="my-3">
+        <%= link_to user.name, user, class: 'h2' %>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate @users %>
+</div>
