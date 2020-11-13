@@ -9,7 +9,7 @@
 
 <div class="jumbotron bg-white">
   <h2>貯金履歴</h2>
-  <% @savings_records.each do |savings_record| %>
+  <% @savings_records_mine.each do |savings_record| %>
     <div class="card mx-auto border-primary mb-3" style="max-width: 20rem;">
       <h3 class="card-header"><%= calc_pay(savings_record) %>円</h3>
       <div class="card-body">
@@ -33,5 +33,5 @@
     </div>
     <br>
   <% end %>
-  <%= paginate @savings_records, :param_name => 'mine', remote: true %>
+  <%= paginate @savings_records_mine, :param_name => 'mine', remote: true %>
 </div>
