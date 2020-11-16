@@ -20,8 +20,14 @@ class SavingsRecordsController < ApplicationController
   end
 
   def index
-    @savings_records = SavingsRecord.where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per(5)
-    @savings_records_all = SavingsRecord.order(created_at: :desc).page(params[:page]).per(5)
+    @savings_records = SavingsRecord.where(user_id: current_user.id)
+    @savings_records_mine = SavingsRecord.where(user_id: current_user.id).order(created_at: :desc).page(params[:mine]).per(5)
+    @savings_records_all = SavingsRecord.order(created_at: :desc).page(params[:all]).per(5)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
