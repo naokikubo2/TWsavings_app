@@ -56,6 +56,7 @@ group :test do
   gem 'webdrivers', require: !ENV['SELENIUM_REMOTE_URL']
   gem "rspec-rails"
   gem "factory_bot_rails"
+  gem 'rspec_junit_formatter'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
