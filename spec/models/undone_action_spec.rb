@@ -76,13 +76,5 @@ RSpec.describe UndoneAction, type: :model do
     expect(u_action.errors.messages[:default_time]).to include("は4文字以内で入力してください")
   end
 
-  #一意性
-  it 'action_nameは一意' do
-    u_action = @u_action
-    u_action_other = @u_action_other
-    u_action_other.valid?
-    expect(u_action_other.errors.messages[:action_name]).to include("はすでに存在します")
-  end
-
 end
 
