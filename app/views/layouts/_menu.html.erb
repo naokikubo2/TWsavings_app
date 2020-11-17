@@ -1,0 +1,14 @@
+<div class="d-flex btn-group mb-3">
+  <%= link_to root_path, class: 'btn btn-outline-secondary w-50' do %>
+    <i class="fas fa-home"></i><br>ホーム
+  <% end %>
+  <%= link_to new_savings_record_path, class: 'btn btn-outline-primary w-50' do %>
+    <i class="fas fa-piggy-bank"></i><br>貯金する
+  <% end %>
+  <%= link_to savings_records_path, class: 'btn btn-outline-secondary w-50' do %>
+    <i class="fas fa-yen-sign"></i><br>貯金履歴
+  <% end %>
+  <%= link_to user_registration_path, class: 'btn btn-outline-secondary w-50' do %>
+    <i class="fas fa-users"></i><br>ユーザー
+  <% end %>
+</div>
