@@ -13,6 +13,9 @@
     <%= render 'layouts/flashes' %>
       <div class="jumbotron text-center">
         <div class="container">
+          <% if user_signed_in? %>
+            <%= render partial: 'layouts/menu' %>
+          <% end %>
           <%= yield %>
         </div>
       </div>

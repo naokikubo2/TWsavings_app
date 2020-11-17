@@ -1,2 +1,13 @@
 @import "~bootstrap/dist/css/bootstrap";
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.carousel{
+  color: black;
+}
+body{
+  padding-top: 60px;
+}
+
+img{
+  //filter: brightness(90%) blur(2px);
+}

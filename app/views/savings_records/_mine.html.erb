@@ -1,8 +1,8 @@
 
-<div class="jumbotron bg-primary text-white">
-  <h2>累計貯金額</h2>
+<div class="py-4 bg-info text-white text-white">
+  <h2><%= current_user.name %>さんの貯金残高</h2>
   <h1>
-    <%= savings_total %>円
+    <i class="fas fa-yen-sign"></i><%= savings_total %>円
   </h1>
   (本日の貯金+ <%= savings_today %> 円)
 </div>
@@ -10,28 +10,23 @@
 <div class="jumbotron bg-white">
   <h2>貯金履歴</h2>
   <% @savings_records_mine.each do |savings_record| %>
-    <div class="card mx-auto border-primary mb-3" style="max-width: 20rem;">
-      <h3 class="card-header"><%= calc_pay(savings_record) %>円</h3>
-      <div class="card-body">
-        <div class="card-text">
-          <p>
-            <%= savings_record.savings_name %>
-            <% if calc_hour(savings_record) > 0  %>
-              <%= calc_hour(savings_record) %>時間
-            <% end %>
-            <% if calc_minuite(savings_record) != 0 %>
-              <%= calc_minuite(savings_record) %>分</a>
-            <% end %>
-            <%= savings_record.savings_date %>
-          <%= link_to savings_record_path(savings_record), method: :delete, data: { confirm: "本当に削除しますか?" },
-                class: 'btn text-warning' do %>
-          <i class="far fa-trash-alt"></i>
+    <div class="card mx-auto border" style="max-width: 40rem;">
+      <h4 class="card-title mt-2"><%= savings_record.savings_name %>で<%= calc_pay(savings_record) %>円 貯金しました</h4>
+      <div class="card-text text-muted">
+          <% if calc_hour(savings_record) > 0  %>
+            <%= calc_hour(savings_record) %>時間
           <% end %>
-          </p>
-        </div>
-      </div>
+          <% if calc_minuite(savings_record) != 0 %>
+            <%= calc_minuite(savings_record) %>分</a>
+          <% end %>
+          <%= I18n.l(savings_record.created_at) %>
+          <%= link_to savings_record_path(savings_record), method: :delete, data: { confirm: "本当に削除しますか?" },
+              class: 'btn text-warning' do %>
+        <i class="far fa-trash-alt"></i>
+        <% end %>
     </div>
-    <br>
+  </div>
+  <br>
   <% end %>
   <%= paginate @savings_records_mine, :param_name => 'mine', remote: true %>
 </div>

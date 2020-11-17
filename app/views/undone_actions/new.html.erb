@@ -1,19 +1,27 @@
-<h2>不要になった行動  新規登録</h2>
+<section class="jumbotron text-center bg-white">
+  <div class="container">
+    <h2>My不要行動  新規登録</h2>
 
-<p>ログインしたユーザが、通勤、朝の準備、付き合いで行く飲み会など、"在宅ワークによって行われなくなった行動"と、"デフォルトでかかる時間"を登録できる。</p>
-<%= form_with(model: @undone, local: true) do |f| %>
-    <%= render 'layouts/error_messages', model: f.object %>
-    <div class="form-group">
-        <%= f.label :action_name, "不要行動の名前" %><br />
-        <%= f.text_field :action_name, autofocus: true, class: 'w-50' %>
-    </div>
+    <a href="#my_undone_action" data-toggle="collapse">My不要行動とは？</a>
+    <div id="my_undone_action" class="collapse text-muted mx-5 px-5"><p>あなたの在宅ワークで、削減されるいつもの行動を登録します。<br />日々の在宅貯金のショートカットに役立ちます。</p></div>
 
-    <div class="form-group">
-        <%= f.label :default_time, "所要時間" %><br />
-        <%= f.number_field :default_time, autofocus: true, class: 'w-50' %>
-    </div>
+    <div class="border-top mt-3 pt-3">
+        <%= form_with(model: @undone, local: true) do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+            <div class="form-group">
+                <%= f.label :action_name, "不要行動の名前" %><br>
+                <%= f.text_field :action_name, autofocus: true, placeholder: "ex) 通勤", class: 'w-50' %>
+            </div>
 
-    <div class="actions">
-        <%= f.submit "登録する" %>
-    </div>
-<% end %>
+            <div class="form-group">
+                <%= f.label :default_time, "所要時間(分)" %><br>
+                <%= f.number_field :default_time, autofocus: true, placeholder: "ex) 120", class: 'w-50'  %>
+            </div>
+
+            <div class="actions">
+                <%= f.submit "登録する", class: "btn-primary" %>
+            </div>
+        <% end %>
+      </div>
+  </div>
+</section>

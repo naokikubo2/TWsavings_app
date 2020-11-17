@@ -1,8 +1,9 @@
 
   <div class="panel panel-default">
-    <div class="panel-heading bg-secondary text-white"><h2 class="panel-title">在宅貯金する</h2><h3><%=  Date.today %></h3></div>
+    <div class="panel-heading bg-success text-white py-2 mb-2"><h2 class="panel-title">今日の在宅貯金を記録する</h2><h5><%=  I18n.l(Date.today) %></h5></div>
     <div class="panel-body bg-light">
       <%= form_with(model: @savings_record, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
 
         <div class="form-group col-md-6 offset-md-3">
           <label>My 不要行動</label><br />
@@ -16,12 +17,12 @@
 
         <div class="form-group">
           <%= f.label :savings_name, "不要行動" %><br />
-          <%= f.text_field :savings_name, autofocus: true, class: 'w-50 text-center' %>
+          <%= f.text_field :savings_name, autofocus: true, class: 'w-50 text-center', placeholder: "ex) 通勤" %>
         </div>
 
         <div class="form-group">
-            <%= f.label :earned_time, "所要時間(分)" %><br />
-            <%= f.number_field :earned_time, autofocus: true, class: 'w-50 text-center' %>
+            <%= f.label :earned_time, "獲得した時間(分)" %><br />
+            <%= f.number_field :earned_time, autofocus: true, class: 'w-50 text-center', placeholder: "ex) 120" %>
         </div><br>
 
         <div class="actions">

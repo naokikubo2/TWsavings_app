@@ -14,4 +14,7 @@ module SavingsRecordsHelper
   def calc_minuite(savings_record)
     savings_record.earned_time.modulo(60)
   end
+  def comment_present(savings_record)
+    savings_record.comments.present?
+  end
 end
