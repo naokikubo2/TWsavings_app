@@ -1,14 +1,15 @@
   <div class="panel panel-default">
     <div class="panel-heading bg-secondary text-white py-2"><h2 class="panel-title"><%= @user.name %></h2></div>
     <div class="panel-body bg-light py-5">
-      <h2>累計貯金額</h2>
+      <h2>貯金残高</h2>
       <h1><%= savings_total %>円</h1>
       (本日の貯金+ <%= savings_today %> 円)
       <div class="my-2 py-2">
         <% if @user.id == current_user.id %>
           <%= link_to 'Edit', edit_user_registration_path(current_user), class: "btn btn-outline-success btn-sm" %>
         <% else %>
-          <%= render partial: 'follow' %>
+          <p><%= render partial: 'follow' %></P>
+          <p><%= render partial: 'follow_count'%></P>
         <% end %>
       </div>
     </div>
