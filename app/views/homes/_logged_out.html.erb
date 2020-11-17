@@ -1,0 +1,36 @@
+<h1 class="lead py-2 bg-info text-white">在宅貯金 = あなたの時給 × 在宅ワークで獲得した時間</h1>
+<%= render partial: 'homes/images' %>
+
+<div class="row featurette mt-5">
+  <div class="col-lg-9">
+    <h2 class="jumbotron-heading">- 在宅貯金app<i class = "fas fa-piggy-bank"></i> とは -</h1>
+    <p class="lead text-muted">時給1000円の人が、1日往復2時間節約すると1年で50万円分の利益があることご存知ですか？</p>
+    <p class="lead text-muted">在宅ワークによって生まれる架空のお金を貯金できるアプリケーションです。</p>
+    <p class="lead text-muted mark">在宅ワークの価値を知って、もっと豊かな世の中を。</p>
+  </div>
+  <div class="col-lg-3 border">
+    <p>
+      <%= link_to signup_path, class: 'btn btn-primary w-100 mt-3' do %>
+        <i class="fas fa-user-plus"></i>新規登録
+      <% end %>
+    </p>
+    <p>
+      <%= link_to login_path, class: 'btn btn-success w-100' do %>
+        <i class="fas fa-sign-in-alt"></i>ログイン
+      <% end %>
+    </p>
+    <p>
+      <%= link_to login_path, class: 'btn btn-warning w-100' do %>
+        <i class="fas fa-sign-in-alt"></i>ゲストログイン<br>（閲覧用）
+      <% end %>
+    </p>
+  </div>
+</div>
+
+
+
+
+
+
+
+

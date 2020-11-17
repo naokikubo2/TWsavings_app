@@ -1,0 +1,72 @@
+<a href="#tw_savings" data-toggle="collapse">在宅貯金とは？</a>
+<div id="tw_savings" class="collapse text-muted mx-5 px-5"><p>在宅貯金 = あなたの時給 × 在宅ワークで得られた時間<br />在宅ワークになれば毎日の通勤時間を自由な時間として獲得できます。</p></div>
+
+<div class="row">
+  <div class="col-lg-8">
+    <div class="py-4 bg-info text-white">
+      <h2><%= current_user.name %>さんの貯金残高</h2>
+      <h1>
+        <i class="fas fa-yen-sign"></i><%= savings_total %>円
+      </h1>
+      (本日の貯金+ <%= savings_today %> 円)
+    </div>
+    <div class="text-right pr-2">
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+  <a>ユーザー名: </a>
+  <%= current_user.name %>
+  <p>
+    <%= link_to logout_path, class: 'btn btn-success w-75' do %>
+      <i class="fas fa-sign-out-alt"></i>ログアウト
+    <% end %>
+  </p>
+  <p>
+    <%= link_to edit_user_registration_path, class: 'btn btn-warning w-75' do %>
+      <i class="fas fa-user-edit"></i>ユーザー情報
+    <% end %>
+  </p>
+  <p>
+    <%= link_to user_registration_path, method: :delete, data: { confirm: "本当に退会しますか?" },
+    class: 'btn btn-danger w-75' do %>
+      <i class="fas fa-user-slash "></i>退会
+    <% end %>
+  </p>
+  </div>
+</div>
+
+<div class = "album my-3 bg-light">
+  <h3 class="mark">My不要行動</h3>
+  <h4>
+  <%= link_to new_undone_action_path, class: 'btn btn-default text-primary mb-0 pb-0' do %>
+  在宅で不要になった行動を登録
+  <% end %>
+  </h4>
+        <div class = "container">
+          <div class = "row">
+            <% current_user.undone_actions.each do |undone_action| %>
+              <div class = "col-md-4">
+                <div class = "card mb-4 shadow-sm">
+                  <%= link_to edit_undone_action_url(undone_action), class: 'btn btn-light' do %>
+                    <div class = "card-body">
+                      <p class = "card-text">
+                        <p><%= undone_action.action_name %></p>
+                        <p>
+                        <% if (undone_action.default_time).div(60)>0  %>
+                          <%= (undone_action.default_time).div(60) %>時間
+                        <% end %>
+                        <% if undone_action.default_time.modulo(60) != 0 %>
+                          <%= undone_action.default_time.modulo(60) %>分</p>
+                        <% end %>
+                      </p>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <a href="#my_undone_action" data-toggle="collapse">My不要行動とは？</a>
+        <div id="my_undone_action" class="collapse text-muted mx-5 px-5"><p>あなたの在宅ワークで、削減されるいつもの行動を登録します。<br />日々の在宅貯金のショートカットに役立ちます。</p></div>
+      </div>
