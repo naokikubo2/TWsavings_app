@@ -33,4 +33,13 @@ class User < ApplicationRecord
     user_ids = Relationship.where(user_id: id).pluck(:follow_id).push(id)
     SavingsRecord.where(user_id: user_ids)
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      user.name = 'ゲスト'
+      user.hourly_pay = '1000'
+    end
+  end
 end
