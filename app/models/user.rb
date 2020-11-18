@@ -28,4 +28,9 @@ class User < ApplicationRecord
   def following?(other_user)
     self.followings.include?(other_user)
   end
+
+  def feed
+    user_ids = Relationship.where(user_id: id).pluck(:follow_id).push(id)
+    SavingsRecord.where(user_id: user_ids)
+  end
 end

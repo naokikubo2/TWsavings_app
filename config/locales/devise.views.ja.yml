@@ -8,6 +8,9 @@ ja:
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
         hourly_pay: "時給"
+      savings_record:
+        savings_name: "不要行動"
+        earned_time: "獲得した時間"
     models:
       user: "ユーザ"
   devise:

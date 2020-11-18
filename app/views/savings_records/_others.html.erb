@@ -1,21 +1,24 @@
 <div class="jumbotron bg-white">
-  <h2>みんなの在宅貯金</h2>
-  <% @savings_records_all.each do |savings_record| %>
+  <h2>フォローユーザーの在宅貯金</h2>
+  <p class="text-muted">履歴をクリックすると、コメントができます<br>
+  継続できるようにお互い励まし合ったり、在宅ワークの情報共有ができます。<p>
+  <% @savings_records_follower.each do |savings_record| %>
 
     <div class="card mx-auto mb-3" style="max-width: 50rem;">
       <div class="row no-gutters">
         <div class="card-header col-md-2 d-flex align-items-center justify-content-center">
-        <%= link_to user_path(savings_record.user), class: "text-decoration-none text-dark" do %>
+        <%= link_to user_path(savings_record.user), class: "text-dark" do %>
           <%= savings_record.user.name %>
         <% end %>
         </div>
         <div class="col-md-10">
           <div class="card-body">
-          <%= link_to savings_record_path(savings_record), class: "text-decoration-none text-dark" do %>
+          <%= link_to savings_record_path(savings_record), class: "text-dark" do %>
             <h4 class="card-title"><%= savings_record.savings_name %>で
-            <%= calc_pay(savings_record) %>円 貯金しました</h4>
+            <%= calc_pay(savings_record) %>円 貯金しました
+            <% if comment_present(savings_record) %><i class="far fa-comments"></i><% end %></h4>
             <% end %>
-            <div class="card-text float-right">
+            <div class="card-text float-right text-muted">
               <%= I18n.l(savings_record.created_at) %>
             </div>
           </div>
@@ -23,5 +26,5 @@
       </div>
     </div>
   <% end %>
-  <%= paginate @savings_records_all, :param_name => 'all', remote: true %>
+  <%= paginate @savings_records_follower, :param_name => 'all', remote: true %>
 </div>

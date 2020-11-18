@@ -1,62 +1,10 @@
-<section class="jumbotron text-center">
+<section class="jumbotron text-center bg-white">
     <div class="container">
-      <h1 class="jumbotron-heading">在宅貯金</h1>
-      <p class="lead text-muted">時給1000円の人が、1日往復2時間節約すると1年で50万円分の利益があることご存知ですか？</p>
-      <p class="lead text-muted">在宅ワークの価値を知って、もっと豊かな世の中を。</p>
-      <p>
         <% if user_signed_in? %>
-          <a>ユーザー名: </a>
-          <%= current_user.name %>
-          <p>
-            <%= link_to logout_path, class: 'btn btn-outline-success w-50' do %>
-              <i class="fas fa-sign-out-alt"></i>ログアウトする
-            <% end %>
-          </p>
-          <p>
-            <%= link_to edit_user_registration_path, class: 'btn btn-outline-warning w-25' do %>
-              <i class="fas fa-user-edit"></i>ユーザー情報を変更する
-            <% end %>
-            <%= link_to user_registration_path, method: :delete, data: { confirm: "本当に退会しますか?" },
-            class: 'btn btn-outline-danger w-25' do %>
-              <i class="fas fa-user-slash "></i>退会する
-            <% end %>
-          </p>
+          <%= render partial: 'logged_in' %>
         <% else %>
-          <%= link_to signup_path, class: 'btn btn-outline-primary w-25' do %>
-            <i class="fas fa-user-plus"></i>新規登録する
-          <% end %>
-          <%= link_to login_path, class: 'btn btn-outline-success w-25' do %>
-            <i class="fas fa-sign-in-alt"></i>ログインする
-          <% end %>
+          <%= render partial: 'logged_out' %>
         <% end %>
       </p>
-      <% if user_signed_in? %>
-      <div class = "album py-5 bg-light">
-        <div class = "container">
-          <div class = "row">
-            <% current_user.undone_actions.each do |undone_action| %>
-              <div class = "col">
-                <div class = "card mb-4 shadow-sm">
-                  <%= link_to edit_undone_action_url(undone_action), class: 'btn btn-default' do %>
-                    <div class = "card-body">
-                      <p class = "card-text">
-                        <p><%= undone_action.action_name %></p>
-                        <p>
-                        <% if (undone_action.default_time).div(60)>0  %>
-                          <%= (undone_action.default_time).div(60) %>時間
-                        <% end %>
-                        <% if undone_action.default_time.modulo(60) != 0 %>
-                          <%= undone_action.default_time.modulo(60) %>分</p>
-                        <% end %>
-                      </p>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <% end %>
     </div>
 </section>
