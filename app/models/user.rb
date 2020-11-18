@@ -30,9 +30,7 @@ class User < ApplicationRecord
   end
 
   def feed
-    following_ids = "SELECT follow_id FROM relationships
-                     WHERE user_id = :user_id"
-    SavingsRecord.where("user_id IN (#{following_ids})
-                     OR user_id = :user_id", user_id: id)
+    user_ids = Relationship.where(user_id: id).pluck(:follow_id).push(id)
+    SavingsRecord.where(user_id: user_ids)
   end
 end
