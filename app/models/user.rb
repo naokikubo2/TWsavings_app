@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :hourly_pay, presence: true, length: { maximum: 6 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 20}
 
   has_many :undone_actions, dependent: :destroy
   has_many :savings_records, dependent: :destroy
