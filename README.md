@@ -2,25 +2,49 @@
 
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 在宅貯金app
+<p>在宅ワークには自由な時間が増えるというメリットがあります。</p>
+<p>例えば毎日、通勤に2時間奪われている人が、在宅ワークを始めるだけで今までよりも自由な時間が2時間も増えるでしょう。もしこの人が時給1000円で働いているのであれば、獲得した2時間には2000円の価値があると考えることができます。</P>
+<p>この、在宅ワークによって生まれる価値を、架空のお金として貯金できるのが在宅貯金appです。</p>
 
-Things you may want to cover:
+## 作成したwebサービスへのアクセスURL
+＜ここにURL＞
 
-* Ruby version
+# 制作背景
+## 在宅ワークの価値を可視化して、もっとポジティブに捉えて欲しい
+<p>私の在籍する会社では、コロナ感染拡大を受けて在宅ワークを推奨しています。同僚の意見を聞いてみると、在宅ワークをポジティブに捉える人よりも、ネガティブに捉える人の方が多い印象です。（私はポジティブに捉えています）</p>
+<p>しかしこんな時代だからこそ、在宅ワーク生活を少しでも楽しめるようにできないかと考えていたことがきっかけです。在宅ワークの最大のメリットである、「自由な時間が増えること」の有り難みをもっと感じる方法は無いかと考えたところ思いついたのがこのアプリケーションです。</p>
 
-* System dependencies
+## 在宅貯金 = あなたの時給 × 在宅ワークで得られた時間
+<p>本アプリケーションでは、上記の価値を「在宅貯金」と定義しました。「毎日の往復2時間の通勤が無くなったから、時給1000円だったら2000円の価値があるし、1年間で考えると、50万円くらいか。」と考えていたことが着想となりました。</p>
 
-* Configuration
+## フロントエンド
+- HTML
+- SCSS
+- webpacker
+- bootstrap4
+- Javascript
 
-* Database creation
+## バックエンド
+- Ruby 2.6.6
+- Ruby on Rails 6.0.3
 
-* Database initialization
+## インフラ・開発環境
+- Docker/docker-compose
+- RSpec
+- selenium
+- capybara
+- factory_bot
+- CircleCI
 
-* How to run the test suite
+## 機能一覧
+- ユーザー登録、ログイン、編集機能（devise）
+- 在宅貯金 登録/削除
+- My不要行動 登録/編集/削除
+- My不要行動データを利用した、在宅貯金入力のショートカット機能
+- コメント機能(Ajax)
+- フォロー、アンフォロー機能
+- ページネーション（Kaminari）(Ajax)
+- ゲストユーザーログイン機能
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
