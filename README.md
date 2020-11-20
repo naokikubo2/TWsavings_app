@@ -2,25 +2,71 @@
 
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 在宅貯金app
 
-Things you may want to cover:
+<div style="text-align: center;">
+<img src="readme_images/スクリーンショット_top画面.png" width="70%"><br>
+top画面のスクリーンショット</div>
 
-* Ruby version
+在宅ワークには自由な時間が増えるというメリットがあります。
 
-* System dependencies
+例えば毎日、通勤に2時間奪われている人が、在宅ワークを始めるだけで今までよりも自由な時間が2時間も増えるでしょう。もしこの人が時給1000円で働いているのであれば、獲得した2時間には2000円の価値があると考えることができます。
 
-* Configuration
+<p>この、在宅ワークによって生まれる価値を、架空のお金として貯金できるのが在宅貯金appです。</p><br>
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+# 制作背景
+## 在宅ワークの価値を可視化して、もっとポジティブに捉えて欲しい
+私の在籍する会社では、コロナ感染拡大を受けて在宅ワークを推奨しています。同僚の意見を聞いてみると、在宅ワークをポジティブに捉える人よりも、ネガティブに捉える人の方が多い印象です。（私はポジティブに捉えています)
 
-* Services (job queues, cache servers, search engines, etc.)
+しかしこんな時代だからこそ、在宅ワーク生活を少しでも楽しめるようにできないかと考えていたことがきっかけです。在宅ワークの最大のメリットである、「自由な時間が増えること」の有り難みをもっと感じる方法は無いかと考えたところ思いついたのがこのアプリケーションです。
 
-* Deployment instructions
+## 在宅貯金 = あなたの時給 × 在宅ワークで得られた時間
+本アプリケーションでは、上記の価値を「在宅貯金」と定義しました。「毎日の往復2時間の通勤が無くなったから、時給1000円だったら2000円の価値があるし、1年間で考えると、50万円くらいか。」と考えていたことが着想となりました。
 
-* ...
+# アプリケーションの特徴
+## 貯金時の入力補助機能
+
+毎日、貯金をしてもらうため、定型的な入力は少しでも楽にできるようにしようと考え、以下の仕組みを作りました。
+
+あらかじめ、在宅ワークになれば、削減される行動と、その所要時間を「My不要行動」として登録しておきます。
+
+![My不要行動の登録](readme_images/My不要行動登録.gif)
+
+<br>
+在宅貯金をするときに、My不要行動をプルダウンから選択できるようになっており、毎日登録するような作業に関しては入力を補助できるようにしています。
+
+![自動入力](readme_images/自動入力.gif)
+
+
+## フロントエンド
+- HTML
+- SCSS
+- webpacker
+- bootstrap4
+- Javascript
+
+## バックエンド
+- Ruby 2.6.6
+- Ruby on Rails 6.0.3
+
+## インフラ・開発環境
+- Docker/docker-compose
+- RSpec
+- selenium
+- capybara
+- factory_bot
+- CircleCI
+
+## 機能一覧
+- ユーザー登録、ログイン、編集機能（devise）
+- 在宅貯金 登録/削除
+- My不要行動 登録/編集/削除
+- My不要行動データを利用した、在宅貯金入力のショートカット機能
+- コメント機能(Ajax)
+- フォロー、アンフォロー機能
+- ページネーション（Kaminari）(Ajax)
+- ゲストユーザーログイン機能
+
+
