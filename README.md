@@ -5,7 +5,7 @@
 # 在宅貯金app
 
 <div style="text-align: center;">
-<img src="readme_images/スクリーンショット_top画面.png" width="70%"><br>
+<img src="readme_images/スクリーンショット_top画面.png"><br>
 top画面のスクリーンショット</div>
 
 在宅ワークには自由な時間が増えるというメリットがあります。
@@ -14,6 +14,8 @@ top画面のスクリーンショット</div>
 
 <p>この、在宅ワークによって生まれる価値を、架空のお金として貯金できるのが在宅貯金appです。</p><br>
 
+## アプリケーションURL
+https://twsavings.herokuapp.com/
 
 
 # 制作背景
