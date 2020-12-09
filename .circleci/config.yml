@@ -29,10 +29,8 @@ jobs:
       - image: cimg/ruby:2.6-node # this is our primary docker image, where step commands run.
       - image: circleci/mysql:8.0.2
         environment:
-          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: test_db
-          MYSQL_USER: user
-          MYSQL_PASSWORD: passw0rd
         name: db
       - image: selenium/standalone-chrome
         name: chrome
