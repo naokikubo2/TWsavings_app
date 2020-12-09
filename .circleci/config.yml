@@ -30,7 +30,7 @@ jobs:
       - image: circleci/mysql:8.0.2
         environment:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test_db
+          MYSQL_DATABASE: test
         name: db
       - image: selenium/standalone-chrome
         name: chrome
