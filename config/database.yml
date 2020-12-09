@@ -7,6 +7,7 @@ default: &default
   host: db
   pool: 5
   timeout: 5000
+  stats_execution_limit: 10
 
 development:
   <<: *default
