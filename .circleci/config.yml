@@ -27,11 +27,12 @@ jobs:
     # here we set 3 docker images.
     docker:
       - image: cimg/ruby:2.6-node # this is our primary docker image, where step commands run.
-      - image: circleci/postgres
-        environment: # add POSTGRES environment variables.
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: test
+      - image: circleci/mysql:8.0.2
+        environment:
+          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: user
+          MYSQL_PASSWORD: passw0rd
         name: db
       - image: selenium/standalone-chrome
         name: chrome
@@ -52,11 +53,22 @@ jobs:
       # Here we make sure that the secondary container boots
       # up before we run operations on the database.
       - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://db:5432 -timeout 1m
+      # プライマリ コンテナは MySQL ではないため、準備が完了するまで sleep コマンドを実行します。
+          name: MySQL が準備できるまで待機
+          command: |
+            for i in `seq 1 10`;
+            do
+              nc -z 127.0.0.1 3306 && echo Success && exit 0
+              echo -n .
+              sleep 1
+            done
+            echo Failed waiting for MySQL && exit 1
       - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
+          name: MySQL CLI のインストール; ダミー データのインポート; サンプル クエリの実行
+          command: |
+            sudo apt-get install default-mysql-client
+            mysql -h 127.0.0.1 -u user -ppassw0rd test_db < sql-data/dummy.sql
+            mysql -h 127.0.0.1 -u user -ppassw0rd --execute="SELECT * FROM test_db.Persons"
       # Run rspec in parallel
       # - ruby/rspec-test
       - run:
